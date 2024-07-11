@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import scrolledtext
-# from Delete_Reports import delete_files
+from Delete_Reports import delete_reports
 from Combine_Reports import combine_reports
+
 from idlelib.tooltip import Hovertip
 
 # Initialization
@@ -16,25 +17,25 @@ root.title("FI Tasker")
 #status dialogue messagebox
 def update_status(message):
     status_box.config(state=tk.NORMAL)
-    status_box.insert(tk.END, message+"\n")
+    status_box.insert(tk.END, message+"-\n")
     status_box.see(tk.END)
     status_box.config(state=tk.DISABLED)
 
-# # function to delete files, take in ID and jobID, default rpt folder. 
-# def run_delete_files():
-#     ID = entry_id.get()
-#     jobID = entry_jobid.get()
-#     folder_path = r"\\uluroweb\submit\rpt"
+# function to delete files, take in ID and jobID, default rpt folder. 
+def run_delete_reports():
+    ID = entry_id.get()
+    jobID = entry_jobid.get()
+    folder_path = r"\\uluroweb\submit\rpt"
 
-#     try:
-#         ID = int(ID)
-#         jobID = int(jobID)
-#         result = delete_files(ID, jobID, folder_path)
-#         update_status(result)
-#     except ValueError:
-#         update_status("-Error: ID and jobID must be integer")
-# #
-# #
+    try:
+        ID = int(ID)
+        jobID = int(jobID)
+        result = delete_reports(ID, jobID, folder_path)
+        update_status(result)
+    except ValueError:
+        update_status("-Error: ID and jobID must be integer")
+#
+#
 
 
 # function to combine files with ID and jobID, saved in rpt folder
@@ -73,13 +74,13 @@ entry_jobid.grid(row=1, column=1, padx=5, pady=5, sticky=tk.W)
 # entry_jobid.grid(row=1, column=1)
 
 #status box initialization
-status_box = scrolledtext.ScrolledText(root, state = tk.DISABLED,width=50,height=25)
+status_box = scrolledtext.ScrolledText(root, state = tk.DISABLED,width=60,height=20)
 status_box.grid(row=3,column=0,columnspan =2,padx=5,pady=5)
 
-# #Delete files action button
-# delete_button = tk.Button(root, text="Delete Files", command=run_delete_files,fg="red",font = "bold")
-# deleteTip = Hovertip(delete_button,"deletes the report files associated with the jobID")
-# delete_button.grid(row=2, column=0)
+#Delete files action button
+delete_button = tk.Button(root, text="Delete Files", command=run_delete_reports,fg="red",font = "bold")
+deleteTip = Hovertip(delete_button,"deletes the report files associated with the jobID")
+delete_button.grid(row=2, column=0)
 
 
 # Combine reports button to call function
