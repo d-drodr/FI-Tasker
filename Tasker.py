@@ -10,6 +10,7 @@ FOLDER_PATH = r"\\uluroweb\submit\rpt"
 # Initialization
 root = tk.Tk()
 root.geometry("500x500")
+root.maxsize(500,500)
 root.title("FI Tasker")
 
 # Status dialogue messagebox
@@ -53,8 +54,6 @@ def validate_inputs(ID, jobID):
 
 # Clear input fields and status box
 def clear_inputs():
-    entry_id.delete(0, tk.END)
-    entry_jobid.delete(0, tk.END)
     status_box.config(state=tk.NORMAL)
     status_box.delete(1.0, tk.END)
     status_box.config(state=tk.DISABLED)
@@ -73,7 +72,7 @@ entry_jobid.bind('<Return>', bind_Enter)
 
 # Clear inputs button
 clear_button = tk.Button(root, text="Clear", command=clear_inputs)
-clear_button.grid(row=4, column=0, padx=5, pady=5)
+clear_button.grid(row=4, column=0,sticky="W"+"E"+"N"+"S")
 
 # Status box initialization
 status_box = scrolledtext.ScrolledText(root, state=tk.DISABLED, width=60, height=20)
