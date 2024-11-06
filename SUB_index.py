@@ -5,7 +5,7 @@ import pandas as pd
 import datetime
 import os
 
-def SUB_index(ID, folder_path):
+def SUBindex(ID, folder_path):
     # uses ID only to find requried csv file 
     file_path = os.path.join(folder_path, f"RPT0000000{ID}.pd.csv")
     if not os.path.exists(file_path):
@@ -28,7 +28,7 @@ def SUB_index(ID, folder_path):
         # Format the date column
     df.iloc[:, 1] = pd.to_datetime(df.iloc[:, 1]).dt.strftime('%m/%d/%Y')
 
-    current_date = datetime.dateime.now().strftime("%m%d%y")
+    current_date = datetime.datetime.now().strftime("%m%d%y")
 
     edited_file_path = os.path.join(folder_path, f"{"SUB_Index_"}{current_date}{".csv"}")
 

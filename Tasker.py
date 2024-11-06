@@ -3,7 +3,7 @@ from tkinter import messagebox, scrolledtext
 from Delete_Reports import delete_reports
 from Combine_Reports import combine_reports
 from idlelib.tooltip import Hovertip
-
+from SUB_index import SUBindex
 # Constants
 FOLDER_PATH = r"\\uluroweb\submit\rpt"
 
@@ -57,6 +57,17 @@ def clear_inputs():
     status_box.config(state=tk.NORMAL)
     status_box.delete(1.0, tk.END)
     status_box.config(state=tk.DISABLED)
+# Sub_index function call
+def run_SUBindex():
+    ID = entry_id.get()
+    # if not validate_inputs(ID):
+    #     return
+    
+    result = SUBindex(ID, FOLDER_PATH)
+    update_status(result, is_error="Error" in result)
+
+
+
 #Pressing Enter will run Combine Reports
 def bind_Enter(event):
     run_combine_reports()
@@ -89,6 +100,12 @@ delete_button.grid(row=2, column=0,  pady=5, sticky ="W")
 combine_button = tk.Button(root, text="Combine Files", command=run_combine_reports, fg="green", font="bold")
 combineTip = Hovertip(combine_button, "Creates paperwork for job ID. Recommended to wait >10 min to ensure all files are generated")
 combine_button.grid(row=2, column=1, sticky = "W" ,pady=5)
+
+# Add Edit CSV Button
+sub_index_button = tk.Button(root, text="Edit CSV", command=run_SUBindex, fg="blue", font="bold")
+Hovertip(sub_index_button, "Edit the CSV file associated with the ID")
+sub_index_button.grid(row=2, column=2, padx=5, pady=5)
+
 
 root.mainloop()
 
