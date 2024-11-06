@@ -9,8 +9,8 @@ FOLDER_PATH = r"\\uluroweb\submit\rpt"
 
 # Initialization
 root = tk.Tk()
-root.geometry("500x500")
-root.maxsize(500,500)
+root.geometry("525x500")
+root.maxsize(515,500)
 root.title("FI Tasker")
 
 # Status dialogue messagebox
@@ -83,12 +83,12 @@ status_box.tag_config("info", foreground="black")
 # Delete files action button
 delete_button = tk.Button(root, text="Delete Files", command=run_delete_reports, fg="red", font="bold")
 deleteTip = Hovertip(delete_button, "Deletes the report files associated with the job ID")
-delete_button.grid(row=2, column=0, padx=5, pady=5)
+delete_button.grid(row=2, column=0,  pady=5, sticky ="W")
 
 # Combine reports button to call function
 combine_button = tk.Button(root, text="Combine Files", command=run_combine_reports, fg="green", font="bold")
 combineTip = Hovertip(combine_button, "Creates paperwork for job ID. Recommended to wait >10 min to ensure all files are generated")
-combine_button.grid(row=2, column=1, padx=5, pady=5)
+combine_button.grid(row=2, column=1, sticky = "W" ,pady=5)
 
 root.mainloop()
 
